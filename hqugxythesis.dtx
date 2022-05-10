@@ -2,7 +2,6 @@
 % !TeX program  = XeLaTeX
 % !TeX encoding = UTF-8
 %
-% Copyright (C) 2017--2022 by Xiangdong Zeng <xdzeng96@gmail.com>
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either
@@ -29,7 +28,7 @@
 \usepackage{hyperref}
 \usepackage{xeCJK}
 \usepackage{listings}
-\lstset{basicstyle=\ttfamily,}
+\lstset{basicstyle=\ttfamily}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
@@ -72,6 +71,10 @@
 %<*thesis>
 \documentclass{hqugxythesis}
 
+\title{论文标题}
+\author{我是谁}
+\newcommand\etitle{The title of the bullshit} % 英文标题
+\newcommand\eauthor{Whoami} % 英文作者
 %</thesis>
 %    \end{macrocode}
 
@@ -81,8 +84,6 @@
 %    \begin{macrocode}
 %<cls>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<cls>\ProvidesClass{nudtpaper}
-%<cfg>\ProvidesFile{nudtpaper.cfg}
-%<cls|cfg>[Crosstyan]
 %    \end{macrocode}
 
 % \subsection{引入基文档库}
@@ -93,4 +94,292 @@
 %    \begin{macrocode}
 \LoadClass[scheme=chinese,a4paper]{report}
 %    \end{macrocode}
+% \lstinline{\LoadClass} 在此相当于 \lstinline{\documentclass}
+% \subsection{引入自定义库}
+% 一大堆玩意, 天知道这些宏包有啥用. 说一些我认识的
+% \begin{itemize}
+%   \item xeCJK 是显示中日文 (CJK) 字符必不可少的
+%   \item listings 做代码注释. 可以调用 \lstinline{\lstinline} 内联代码/等宽
+% \end{itemize}
+%    \begin{macrocode}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{amsmath}
+\RequirePackage{esint}
+\RequirePackage{tabstackengine}
+\RequirePackage[colorlinks,linkcolor=blue]{hyperref}
+\RequirePackage{xeCJK}
+\RequirePackage{caption} 
+\RequirePackage{stackengine}
+\RequirePackage{graphicx}
+\RequirePackage{float}
+\RequirePackage{amsmath}
+\RequirePackage{ulem}
+\RequirePackage{amsfonts}
+\RequirePackage{enumitem}
+\RequirePackage{listings}
+\RequirePackage{setspace}
+\RequirePackage{subcaption}
+\RequirePackage{ifthen,calc}
+%    \end{macrocode}
+%  参考文献库
+%    \begin{macrocode}
+\RequirePackage[backend=biber,style=gb7714-2015,gbnamefmt=familyahead]{biblatex}
+%    \end{macrocode}
+% 设置列表的间距
+%    \begin{macrocode}
+\setlist[1]{itemsep=-5pt}
+%    \end{macrocode}
+
+% 设置 \lstinline{listings} 宏包的字体为等宽字体
+%    \begin{macrocode}
+\lstset{basicstyle=\ttfamily}
+%    \end{macrocode}
+
+
+% 引入 \lstinline{geometry} 宏包, 设置页边距和页面格式, 详细去看文档或者
+% \href{https://github.com/huangxg/lnotes}{雷太赫排版系统简介} 的第11章
+%    \begin{macrocode}
+\RequirePackage{geometry}
+\geometry{%
+  a4paper,%
+  left=30mm,%
+  right=30mm,%
+  headsep=10mm,%
+  top=30mm,%
+  bottom=20mm}
+%    \end{macrocode}
+% 设置表格的 padding 以及其 caption 的间距
+%    \begin{macrocode}
+\setlength{\tabcolsep}{0.5em} % for the horizontal padding
+\renewcommand{\arraystretch}{1.2}% for the vertical padding
+\captionsetup[table]{skip=10pt}
+%    \end{macrocode}
+
+% \subsection{字体相关}
+% 设置字体缩写, 从 nudtpaper 那抄的, 似乎清华的模板也有这一段
+%    \begin{macrocode}
+\newcommand{\cusong}{\bfseries}
+\newcommand{\song}{\CJKfamily{song}}     % 宋体
+\newcommand{\fs}{\CJKfamily{fs}}         % 仿宋体
+\newcommand{\kai}{\CJKfamily{kai}}       % 楷体
+\newcommand{\hei}{\CJKfamily{hei}}       % 黑体
+\def\songti{\song}
+\def\fangsong{\fs}
+\def\kaishu{\kai}
+\def\heiti{\hei}
+%    \end{macrocode}
+
+% \begin{macro}{\thu@def@fontsize}
+% 根据习惯定义字号。用法：
+%
+% \cs{thu@def@fontsize}\marg{字号名称}\marg{磅数}
+% ``避免了字号选择和行距的紧耦合。所有字号定义时为单倍行距，并提供选项指定行距倍数。"
+%    \begin{macrocode}
+\def\thu@def@fontsize#1#2{%
+  \expandafter\newcommand\csname #1\endcsname[1][1.3]{%
+    \fontsize{#2}{##1\dimexpr #2}\selectfont}}
+%    \end{macrocode}
+% \end{macro}
+% 从清华那抄的 
+%    \begin{macrocode}
+\thu@def@fontsize{chuhao}{42bp}
+\thu@def@fontsize{xiaochu}{36bp}
+\thu@def@fontsize{yihao}{26bp}
+\thu@def@fontsize{xiaoyi}{24bp}
+\thu@def@fontsize{erhao}{22bp}
+\thu@def@fontsize{xiaoer}{18bp}
+\thu@def@fontsize{sanhao}{16bp}
+\thu@def@fontsize{xiaosan}{15bp}
+\thu@def@fontsize{sihao}{14bp}
+\thu@def@fontsize{xiaosi}{12bp}
+\thu@def@fontsize{wuhao}{10.5bp}
+\thu@def@fontsize{xiaowu}{9bp}
+\thu@def@fontsize{liuhao}{7.5bp}
+\thu@def@fontsize{xiaoliu}{6.5bp}
+\thu@def@fontsize{qihao}{5.5bp}
+\thu@def@fontsize{bahao}{5bp}
+%    \end{macrocode}
+
+% 中文缩进两个汉字位
+%    \begin{macrocode}
+\makeatletter
+\let\@afterindentfalse\@afterindenttrue
+\@afterindenttrue
+\makeatother
+\setlength{\parindent}{2em}
+%    \end{macrocode}
+
+% 章节等重定义
+
+%    \begin{macrocode}
+\renewcommand{\contentsname}{目录}  
+\renewcommand{\abstractname}{摘要}  
+\renewcommand{\refname}{参考文献}
+\renewcommand{\bibname}{参考文献}
+\renewcommand{\indexname}{索引}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\renewcommand{\appendixname}{附录}
+%    \end{macrocode}
+
+% \begin{macro}{\ack}
+% 自定义的 Acknowledgement 环境
+%    \begin{macrocode}
+\newenvironment{ack}{%
+    \chapter*{致\hspace{1em}谢}%
+    \addcontentsline{toc}{chapter}{致谢}%
+    \markboth{致谢}{}}
+    {\par\vspace{2em}\par}
+%    \end{macrocode}
+% \end{macro}
+% 让我们多引几个包吧, 调库多爽. 其中
+% \begin{itemize}
+%   \item \lstinline{titlesec} 是格式化标题的宏包
+%   \item \lstinline{titletoc} 则是格式化目录的宏包
+%   \item \lstinline{fancyhdr} 设置页眉和页脚
+% \end{itemize}
+%    \begin{macrocode}
+\RequirePackage{mathrsfs}
+\RequirePackage{fancyhdr}
+\RequirePackage{tabularx}
+\RequirePackage{titlesec}
+\RequirePackage{titletoc}
+\RequirePackage{titling}
+%    \end{macrocode}
+% 重新定义标题格式
+%    \begin{macrocode}
+\titleformat{\chapter}{\filcenter\sf \heiti\sihao}{第 \thechapter 章}{1em}{}
+\titleformat{\section}{\sf \heiti\sihao[1.25]}{\thesection}{1em}{}
+\titleformat{\subsection}{\sf \heiti\xiaosi[1.25]}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\sf \heiti\xiaosi[1.25]}{\thesubsubsection}{1em}{}
+%    \end{macrocode}
+% 定义章节间距, 需要负的章前段间距
+%    \begin{macrocode}
+\titlespacing*{\chapter}{0pt}{-4ex}{2.4ex}
+%    \end{macrocode}
+% 重新定义目录章节格式
+%    \begin{macrocode}
+\titlecontents{chapter}[0pt]{\vspace{0.25\baselineskip} \heiti \xiaosi[1.25]}
+    {第 \thecontentslabel 章\quad}{}
+    {\hspace{.5em}\titlerule*{.}\contentspage}
+\titlecontents{section}[2em]{\songti \xiaosi[1.25]}
+    {\thecontentslabel\quad}{}
+    {\hspace{.5em}\titlerule*{.}\contentspage}
+\titlecontents{subsection}[4em]{\songti \xiaosi[1.25]}
+    {\thecontentslabel\quad}{}
+    {\hspace{.5em}\titlerule*{.}\contentspage}
+%    \end{macrocode}
+% 设置页眉页脚
+%    \begin{macrocode}
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[C]{%
+    \wuhao
+    \leftmark
+  }%
+  \fancyfoot[C]{
+    \xiaowu
+    \thepage
+  }%
+  \renewcommand\headrulewidth{0.75bp}%
+}
+%    \end{macrocode}
+% 设置页眉章节
+%    \begin{macrocode}
+\renewcommand{\chaptermark}[1]{\markboth{
+  \wuhao
+  第 \thechapter 章 \quad #1
+}{}}
+%    \end{macrocode}
+% \subsection{信息设置}
+% 一些个人信息, 你可以在正文中用 \lstinline{\newcommand} 覆写
+%    \begin{macrocode}
+\title{论文标题}
+\author{论文作者}
+\providecommand\etitle{English Title} % 英文标题
+\providecommand\eauthor{Whoami} % 英文作者
+\providecommand\studentid{123456789} % 学号
+\providecommand\graduateyear{2022} %毕业年份
+\providecommand\major{信息工程专业}
+\providecommand\emajor{Electrical Engineering}
+%    \end{macrocode}
+
+% \begin{macro}{\mkchtitle}
+% 中文标题
+%    \begin{macrocode}
+\newcommand{\mkchtitle}{
+  \begin{center}
+    \setstretch{1.6}
+    \sanhao\textsf{\thetitle} \\
+    \sihao 华侨大学工学院 \\
+    \major \graduateyear \space \theauthor \space \studentid
+  \end{center}
+  \par\vspace{2em}\par}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\mkentitle}
+% 英文标题
+%    \begin{macrocode}
+\newcommand{\mkentitle}{
+  \begin{center}
+    \setstretch{1}
+    \sihao\textbf{\textsf{\etitle}} \\
+    \setstretch{1.2}
+    \xiaosi \eauthor \\
+    \studentid, \emajor, \graduateyear\\
+    College of Engineering, Huaqiao University \\
+  \end{center}
+  \par\vspace{2em}\par}
+%    \end{macrocode}
+% \end{macro}
+
+% \subsection{摘要设置}
+% 一些辅助命令, 从 nudtpaper 那抄的
+%    \begin{macrocode}
+\newcommand\cabstractname{摘要}
+\newcommand\eabstractname{Abstract}
+\newcommand\ckeywordsname{关键词}
+\newcommand\ekeywordsname{Key Words}
+%    \end{macrocode}
+
+% \begin{macro}{\cabstract}
+% 英文摘要
+%    \begin{macrocode}
+\newenvironment{eabstract}{%
+    \setlength{\parindent}{0em}
+    \markboth{华侨大学工学院毕业设计　\theauthor: \thetitle}{}
+    \textbf{\sihao \eabstractname \space}
+    \xiaosi
+    }{\par\vspace{2em}\par}
+%    \end{macrocode}
+% \end{macro}
+
+
+% \begin{macro}{\ekeywords}
+% 英文关键词
+%    \begin{macrocode}
+\newcommand\ekeywords[1]{\textbf{\textsf{\xiaosi \ekeywordsname:}} #1}
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\cabstract}
+% 中文摘要
+%    \begin{macrocode}
+\newenvironment{cabstract}{%
+    \setlength{\parindent}{0em}
+    \markboth{华侨大学工学院毕业设计　\theauthor: \thetitle}{}
+    \textsf{\sihao \cabstractname \space}
+    \xiaosi
+    }{\par\vspace{2em}\par} 
+%    \end{macrocode}
+% \end{macro}
+
+% \begin{macro}{\ckeywords}
+% 中文关键词
+%    \begin{macrocode}
+\newcommand\ckeywords[1]{{\textsf{\xiaosi \ckeywordsname:} #1}}
+%    \end{macrocode}
+% \end{macro}
+
 

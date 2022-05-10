@@ -1,233 +1,37 @@
 %BACKEND=biber%
-\documentclass[scheme=chinese,a4paper]{report}
-\usepackage[utf8]{inputenc}
-\usepackage{amsmath}
-\usepackage{esint}
-\usepackage{tabstackengine}
-\usepackage[colorlinks,linkcolor=blue]{hyperref}
-\usepackage{xeCJK}
-\usepackage{caption} 
-\usepackage{stackengine}
-\usepackage{graphicx}
-\graphicspath{ {./figures} }
-\usepackage{float}
-\usepackage{amsmath}
-\usepackage{ulem}
-\usepackage{amsfonts}
-\usepackage{enumitem}
-\usepackage{listings}
-\usepackage{setspace}
-\lstset{
-  basicstyle=\ttfamily,
-  breaklines        = true,
-  breakatwhitespace = true,
-  numbers           = left
-}
-\setlist[1]{itemsep=-5pt}
-\usepackage{subcaption}
-\usepackage{tikz}
-\usetikzlibrary{calc}
-\usepackage{pgfplots}
-\usepackage{mathrsfs}
-\usepackage{fancyhdr}
-\usepackage{tabularx}
-\usepackage{titlesec}
-\usepackage{titletoc}
-\usepackage{titling}
+\documentclass{hqugxythesis}
+
 \usepackage{lipsum} 
 \usepackage{zhlipsum}
 % biber
-\usepackage[backend=biber,style=gb7714-2015,gbnamefmt=familyahead]{biblatex}
 \addbibresource{refs.bib}
-\usetikzlibrary{shapes,arrows}
-\usetikzlibrary{arrows}
-\captionsetup[table]{skip=10pt}
-
-\usepackage{geometry}
-\geometry{
-a4paper,
-% total={170mm,257mm},
-left=30mm,
-right=30mm,
-top=30mm,
-bottom=20mm,
-}
-
-% \newcommand{\sectionbreak}{%
-% \addpenalty{-300}%
-% \vspace*{0pt}%
-% }
-% \setlength{\topskip}{0pt}
-
-
-\newcommand{\cusong}{\bfseries}
-\newcommand{\song}{\CJKfamily{song}}     % 宋体
-\newcommand{\fs}{\CJKfamily{fs}}         % 仿宋体
-\newcommand{\kai}{\CJKfamily{kai}}       % 楷体
-\newcommand{\hei}{\CJKfamily{hei}}       % 黑体
-\def\songti{\song}
-\def\fangsong{\fs}
-\def\kaishu{\kai}
-\def\heiti{\hei}
-
-\def\thu@def@fontsize#1#2{%
-  \expandafter\newcommand\csname #1\endcsname[1][1.3]{%
-    \fontsize{#2}{##1\dimexpr #2}\selectfont}}
-%    \end{macrocode}
-% \end{macro}
-%
-% 一组字号定义。
-%    \begin{macrocode}
-\thu@def@fontsize{chuhao}{42bp}
-\thu@def@fontsize{xiaochu}{36bp}
-\thu@def@fontsize{yihao}{26bp}
-\thu@def@fontsize{xiaoyi}{24bp}
-\thu@def@fontsize{erhao}{22bp}
-\thu@def@fontsize{xiaoer}{18bp}
-\thu@def@fontsize{sanhao}{16bp}
-\thu@def@fontsize{xiaosan}{15bp}
-\thu@def@fontsize{sihao}{14bp}
-\thu@def@fontsize{xiaosi}{12bp}
-\thu@def@fontsize{wuhao}{10.5bp}
-\thu@def@fontsize{xiaowu}{9bp}
-\thu@def@fontsize{liuhao}{7.5bp}
-\thu@def@fontsize{xiaoliu}{6.5bp}
-\thu@def@fontsize{qihao}{5.5bp}
-\thu@def@fontsize{bahao}{5bp}
-
-%%%% 段落首行缩进两个字 %%%%
-\makeatletter
-\let\@afterindentfalse\@afterindenttrue
-\@afterindenttrue
-\makeatother
-\setlength{\parindent}{2em}  %中文缩进两个汉字位
-% \textsf{indentfirst}
-
-%%%% 重定义 %%%%
-\renewcommand{\contentsname}{目录}  % 将Contents改为目录
-\renewcommand{\abstractname}{摘要}  % 将Abstract改为摘要
-\renewcommand{\refname}{参考文献}   % 将References改为参考文献
-\renewcommand{\bibname}{参考文献}
-\renewcommand{\indexname}{索引}
-\renewcommand{\figurename}{图}
-\renewcommand{\tablename}{表}
-\renewcommand{\appendixname}{附录}
-
-\RequirePackage{ifthen,calc}
-%% Acknowledgements
-\newenvironment{ack}{%
-    \chapter*{致\hspace{1em}谢}%
-    \addcontentsline{toc}{chapter}{致谢}%
-    \markboth{致谢}{}
-    }
-    {\par\vspace{2em}\par}
-
-
-% https://github.com/liubenyuan/nudtpaper/blob/master/nudtpaper.dtx
-% See https://github.com/tuna/thuthesis/blob/master/thuthesis.dtx
-\titleformat{\chapter}{\filcenter\sf \heiti\sihao}{第 \thechapter 章}{1em}{}
-\titleformat{\section}{\sf \heiti\sihao[1.25]}{\thesection}{1em}{}
-\titleformat{\subsection}{\sf \heiti\xiaosi[1.25]}{\thesubsection}{1em}{}
-\titleformat{\subsubsection}{\sf \heiti\xiaosi[1.25]}{\thesubsubsection}{1em}{}
-\titlespacing{\chapter}{0pt}{2.4ex-\topskip}{2.4ex minus 2bp}
-
-\titlecontents{chapter}[0pt]{\vspace{0.25\baselineskip} \heiti \xiaosi[1.25]}
-    {第 \thecontentslabel 章\quad}{}
-    {\hspace{.5em}\titlerule*{.}\contentspage}
-\titlecontents{section}[2em]{\songti \xiaosi[1.25]}
-    {\thecontentslabel\quad}{}
-    {\hspace{.5em}\titlerule*{.}\contentspage}
-\titlecontents{subsection}[4em]{\songti \xiaosi[1.25]}
-    {\thecontentslabel\quad}{}
-    {\hspace{.5em}\titlerule*{.}\contentspage}
-
-
-
-% \renewcommand{\chaptermark}[1]{\markboth{第\ \thechapter\ 章 \ #1}{}}
-\fancypagestyle{plain}{%
-  % \renewcommand\headrulewidth{0pt}%
-  \fancyhf{}
-  \fancyhead[C]{%
-    \wuhao
-    \leftmark
-  }%
-  \fancyfoot[C]{
-    \xiaowu
-    \thepage
-  }%
-  \renewcommand\headrulewidth{0.75bp}%
-}
-
-\renewcommand{\chaptermark}[1]{\markboth{
-  \wuhao
-  第 \thechapter 章 \quad #1
-}{}}
-
 
 \title{论文标题}
 \author{我是谁}
-\newcommand\etitle{The title of the bullshit} % 英文标题
-\newcommand\eauthor{Whoami} % 英文作者
-
-\newcommand\cabstractname{摘要}
-\newcommand\eabstractname{Abstract}
-\newcommand\ckeywordsname{关键词}
-\newcommand\ckeywords[1]{{\textsf{\xiaosi \ckeywordsname:} #1}}
-\newcommand\ekeywordsname{Key Words}
-\newcommand\ekeywords[1]{\textbf{\textsf{\xiaosi \ekeywordsname:}} #1}
-\newenvironment{cabstract}{%
-    \setlength{\parindent}{0em}
-    \markboth{华侨大学工学院毕业设计　\theauthor: \thetitle}{}
-    \textsf{\sihao \cabstractname \space}
-    \xiaosi
-    }
-    {}
-\newenvironment{eabstract}{%
-    \setlength{\parindent}{0em}
-    \markboth{华侨大学工学院毕业设计　\theauthor: \thetitle}{}
-    \textbf{\sihao \eabstractname \space}
-    \xiaosi
-    }
-    {}
-
+\renewcommand\etitle{The title of the bullshit} % 英文标题
+\renewcommand\eauthor{Whoami} % 英文作者
 
 \pagestyle{plain}
 \begin{document}
 \pagenumbering{Roman}
 \xiaosi[1.5]\selectfont
 
-\begin{center}
-  \setstretch{1.6}
-  \sanhao\textsf{\thetitle} \\
-  \sihao 华侨大学工学院 \\
-  信息工程专业 \space \theauthor \space 1234567890
-\end{center}
+{
+  \setlength{\parindent}{0em}
+  \mkchtitle
+  \begin{cabstract}
+    \zhlipsum[1-1]
+  \end{cabstract}
+  \ckeywords{物联网; 目标识别; clojure; }
 
-\setlength{\parindent}{0em}
-\begin{cabstract}
-  \zhlipsum[1-1]
-\end{cabstract}
+  \newpage
 
-\ckeywords{物联网; 目标识别; clojure; }
-
-\newpage
-
-\begin{center}
-  \setstretch{1}
-  \sihao\textbf{\textsf{\etitle}} \\
-  \setstretch{1.2}
-  \xiaosi \eauthor{} \\
-  123456789, Electrical Engineering, 2022\\
-  College of Engineering, Huaqiao University \\
-\end{center}
-
-\begin{eabstract}
-  \lipsum[1-1]
-\end{eabstract}
-
-\ekeywords{IoT; Object Detection; clojure; }
-
-\setlength{\parindent}{2em}
+  \mkentitle
+  \begin{eabstract}
+    \lipsum[1-1]
+  \end{eabstract}
+  \ekeywords{IoT; Object Detection; clojure; }
+}
 
 % TOC
 \tableofcontents
@@ -243,7 +47,6 @@ bottom=20mm,
 
 
 \chapter{总结与展望}
-
 
 \addcontentsline{toc}{chapter}{参考文献}
 \printbibliography[heading=bibliography, title=参考文献]

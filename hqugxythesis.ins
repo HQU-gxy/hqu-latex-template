@@ -40,7 +40,8 @@ through LaTeX.
 
 \generate{
 	\file{\jobname.cls}{\from{\jobname.dtx}{cls}}
-	\file{\jobname.cfg}{\from{\jobname.dtx}{cfg}}
+  	\nopostamble
+	\file{thesis.tex}{\from{\jobname.dtx}{thesis}}
 }
 
 \ifToplevel{
@@ -51,7 +52,6 @@ through LaTeX.
 \Msg{*}
 \Msg{*}
 \Msg{* \space\space hqugxythesis.cls}
-\Msg{* \space\space hqugxythesis.cfg}
 \Msg{*}
 \Msg{* To produce the documentation run the files ending with}
 \Msg{* `.dtx' through LaTeX.}
