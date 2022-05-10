@@ -27,10 +27,8 @@
 
 
 
-\CodelineIndex
-
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
-\ProvidesClass{nudtpaper}
+\ProvidesClass{hqugxythesis}
 
 \LoadClass[scheme=chinese,a4paper]{report}
 \RequirePackage[utf8]{inputenc}
