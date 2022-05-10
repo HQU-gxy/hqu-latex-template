@@ -1,0 +1,93 @@
+%%
+%% This is file `thesis.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% hqugxythesis.dtx  (with options: `thesis')
+%% 
+%% This is a generated file.
+%% 
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3a
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in:
+%% 
+%% http://www.latex-project.org/lppl.txt
+%% 
+%% and version 1.3a or later is part of all distributions of LaTeX
+%% version 2004/10/01 or later.
+%% 
+%% To produce the documentation run the original source files ending with `.dtx'
+%% through LaTeX.
+%% 
+
+
+
+
+\documentclass{hqugxythesis}
+\usepackage{lipsum}
+\usepackage{zhlipsum}
+\title{论文标题}
+\author{我是谁}
+\renewcommand\etitle{English Title} % 英文标题
+\renewcommand\eauthor{Whoami} % 英文作者
+\renewcommand\studentid{123456789} % 学号
+\renewcommand\graduateyear{2022} %毕业年份
+\renewcommand\major{信息工程专业}
+\renewcommand\emajor{Electrical Engineering}
+
+
+\addbibresource{refs.bib}
+\pagestyle{plain}
+
+
+\begin{document}
+\pagenumbering{Roman}
+\xiaosi[1.5]\selectfont
+
+
+{
+  \setlength{\parindent}{0em} % 重设段落缩进
+  \mkchtitle
+  \begin{cabstract}
+    \zhlipsum[1-1]
+  \end{cabstract}
+  \ckeywords{物联网; 目标识别; clojure; }
+
+  \newpage
+
+  \mkentitle
+  \begin{eabstract}
+    \lipsum[1-1]
+  \end{eabstract}
+  \ekeywords{IoT; Object Detection; clojure; }
+}
+
+\tableofcontents
+
+
+\chapter{绪论}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\xiaosi[1.5]\selectfont
+\section{本课题的的研究目的和意义}
+引文\cite{canny_john}
+\section{国内外研究现状}
+\zhlipsum
+\chapter{总结与展望}
+\zhlipsum
+
+
+\addcontentsline{toc}{chapter}{参考文献}
+\printbibliography[heading=bibliography, title=参考文献]
+
+
+\begin{ack}
+  \zhlipsum
+\end{ack}
+
+\end{document}
+
+
+

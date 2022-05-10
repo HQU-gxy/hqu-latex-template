@@ -67,19 +67,114 @@
 % \item 欢迎提出修改意见
 % \end{enumerate}
 
-%    \begin{macrocode}
+% \section{使用该模板}
 %<*thesis>
+% 用 biber 作为 biblatex 的后端. 设文档类为 hqugxythesis
+%    \begin{macrocode}
+%BACKEND=biber%
 \documentclass{hqugxythesis}
-
+%    \end{macrocode}
+% 乱文假字包, 实际写作不需要
+%    \begin{macrocode}
+\usepackage{lipsum} 
+\usepackage{zhlipsum}
+%    \end{macrocode}
+% 定义论文标题, 个人信息等
+%    \begin{macrocode}
 \title{论文标题}
 \author{我是谁}
-\newcommand\etitle{The title of the bullshit} % 英文标题
-\newcommand\eauthor{Whoami} % 英文作者
-%</thesis>
+\renewcommand\etitle{English Title} % 英文标题
+\renewcommand\eauthor{Whoami} % 英文作者
+\renewcommand\studentid{123456789} % 学号
+\renewcommand\graduateyear{2022} %毕业年份
+\renewcommand\major{信息工程专业}
+\renewcommand\emajor{Electrical Engineering}
 %    \end{macrocode}
+
+% 添加参考文献, 重设页面风格
+
+%    \begin{macrocode}
+% biber
+\addbibresource{refs.bib}
+\pagestyle{plain}
+%    \end{macrocode}
+
+% 导言区结束, 开始正文. 设置开始时的页码编码为
+% 大写罗马数字, 设置全局字体
+
+%    \begin{macrocode}
+\begin{document}
+\pagenumbering{Roman}
+\xiaosi[1.5]\selectfont
+%    \end{macrocode}
+
+% 个人信息, 摘要以及关键词. 然后是目录
+
+%    \begin{macrocode}
+{
+  \setlength{\parindent}{0em} % 重设段落缩进
+  \mkchtitle
+  \begin{cabstract}
+    \zhlipsum[1-1]
+  \end{cabstract}
+  \ckeywords{物联网; 目标识别; clojure; }
+
+  \newpage
+
+  \mkentitle
+  \begin{eabstract}
+    \lipsum[1-1]
+  \end{eabstract}
+  \ekeywords{IoT; Object Detection; clojure; }
+}
+
+% TOC
+\tableofcontents
+%    \end{macrocode}
+
+% 重设页码计数器, 设页码格式为阿拉伯数字
+
+%    \begin{macrocode}
+\chapter{绪论}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\xiaosi[1.5]\selectfont
+\section{本课题的的研究目的和意义}
+引文\cite{canny_john}
+% 写正文...
+\section{国内外研究现状}
+\zhlipsum
+\chapter{总结与展望}
+\zhlipsum
+%    \end{macrocode}
+
+% 参考文献
+
+%    \begin{macrocode}
+\addcontentsline{toc}{chapter}{参考文献}
+\printbibliography[heading=bibliography, title=参考文献]
+%    \end{macrocode}
+
+% 致谢
+
+%    \begin{macrocode}
+\begin{ack}
+  \zhlipsum
+\end{ack}
+%    \end{macrocode}
+
+% 文章结束
+%    \begin{macrocode}
+\end{document}
+%    \end{macrocode}
+%</thesis>
+% \subsection{常见问题}
+% 没有目录/参考文献? XeLaTeX -> Biber -> XeLaTeX -> XeLaTeX
+% 四次编译不可少
 
 % \section{实现细节}
 
+%<*cls>
 % \subsection{基本信息}
 %    \begin{macrocode}
 %<cls>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
@@ -381,5 +476,6 @@
 \newcommand\ckeywords[1]{{\textsf{\xiaosi \ckeywordsname:} #1}}
 %    \end{macrocode}
 % \end{macro}
+%</cls>
 
 
