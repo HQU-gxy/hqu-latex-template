@@ -1,0 +1,96 @@
+% \iffalse meta-comment
+% !TeX program  = XeLaTeX
+% !TeX encoding = UTF-8
+%
+% Copyright (C) 2017--2022 by Xiangdong Zeng <xdzeng96@gmail.com>
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3c of this license or (at your option) any later
+% version. The latest version of this license is in:
+%
+%   http://www.latex-project.org/lppl.txt
+%
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is Xiangdong Zeng.
+% \fi
+
+% \iffalse
+% <package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+% <package>\ProvidesPackage{hqugxythesis}
+% <package>[Crosstyan]
+%<*driver>
+\ProvidesFile{hqugxythesis.dtx}[2022/5/10]
+\documentclass[11pt]{ltxdoc}
+\usepackage{hyperref}
+\usepackage{xeCJK}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily,}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{\jobname.dtx}
+\end{document}
+%</driver>
+% \fi
+
+% \GetFileInfo{\jobname.dtx}
+%
+% \DoNotIndex{\begin,\end,\begingroup,\endgroup}
+% \DoNotIndex{\ifx,\ifdim,\ifnum,\ifcase,\else,\or,\fi}
+% \DoNotIndex{\let,\def,\xdef,\newcommand,\renewcommand}
+% \DoNotIndex{\expandafter,\csname,\endcsname,\relax,\protect}
+% \DoNotIndex{\Huge,\huge,\LARGE,\Large,\large,\normalsize}
+% \DoNotIndex{\small,\footnotesize,\scriptsize,\tiny}
+% \DoNotIndex{\normalfont,\bfseries,\slshape,\interlinepenalty}
+% \DoNotIndex{\hfil,\par,\hskip,\vskip,\vspace,\quad}
+% \DoNotIndex{\centering,\raggedright}
+% \DoNotIndex{\c@secnumdepth,\@startsection,\@setfontsize}
+% \DoNotIndex{\ ,\@plus,\@minus,\p@,\z@,\@m,\@M,\@ne,\m@ne}
+% \DoNotIndex{\@@par,\DeclareOperation,\RequirePackage,\LoadClass}
+% \DoNotIndex{\AtBeginDocument,\AtEndDocument}
+%
+
+% \thispagestyle{empty}
+% 该文档为对 \href{https://github.com/liubenyuan/nudtpaper/blob/master/nudtpaper.dtx}{liubenyuan/nudtpaper}
+% 与 \href{https://github.com/tuna/thuthesis/blob/master/thuthesis.dtx}{tuna/thuthesis} 的改写/抄袭.
+% 
+% \begin{enumerate}
+% \item 本模板的发布遵守 \LaTeX{} Project Public License，使用前请认真阅读协议内容
+% \item 任何由于使用本模板而引起的论文格式审查问题均与本模板作者无关。
+% \item 任何个人或组织均可以本模板为基础进行修改、扩展，生成新的专用模板，但请严格遵
+% 守\LaTeX{} Project Public License 协议
+% \item 欢迎提出修改意见
+% \end{enumerate}
+
+%    \begin{macrocode}
+%<*thesis>
+\documentclass{hqugxythesis}
+
+%</thesis>
+%    \end{macrocode}
+
+% \section{实现细节}
+
+% \subsection{基本信息}
+%    \begin{macrocode}
+%<cls>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+%<cls>\ProvidesClass{nudtpaper}
+%<cfg>\ProvidesFile{nudtpaper.cfg}
+%<cls|cfg>[Crosstyan]
+%    \end{macrocode}
+
+% \subsection{引入基文档库}
+%
+% 扩展默认的 report.cls 见 \href{https://tex.stackexchange.com/questions/353747/where-can-i-find-the-article-cls-class-file-of-texlive-2016-on-my-pc}{Where can I find the article.cls class file of texlive-2016 on my pc?}.
+% 该文件由 \href{http://tug.ctan.org/tex-archive/macros/latex/base/classes.dtx}{classes.dtx} 所生成
+% (虽然知道这一点没什么用处就是了.)
+%    \begin{macrocode}
+\LoadClass[scheme=chinese,a4paper]{report}
+%    \end{macrocode}
+
