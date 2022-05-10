@@ -27,6 +27,8 @@
 
 
 
+\CodelineIndex
+
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{nudtpaper}
 

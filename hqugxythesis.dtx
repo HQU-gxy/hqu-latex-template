@@ -68,9 +68,9 @@
 % \end{enumerate}
 
 % \section{使用该模板}
-%<*thesis>
 % 用 biber 作为 biblatex 的后端. 设文档类为 hqugxythesis
 %    \begin{macrocode}
+%<*thesis>
 %BACKEND=biber%
 \documentclass{hqugxythesis}
 %    \end{macrocode}
@@ -166,19 +166,20 @@
 % 文章结束
 %    \begin{macrocode}
 \end{document}
-%    \end{macrocode}
 %</thesis>
+%    \end{macrocode}
 % \subsection{常见问题}
 % 没有目录/参考文献? XeLaTeX -> Biber -> XeLaTeX -> XeLaTeX
 % 四次编译不可少
 
 % \section{实现细节}
 
-%<*cls>
+
 % \subsection{基本信息}
 %    \begin{macrocode}
-%<cls>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
-%<cls>\ProvidesClass{nudtpaper}
+%<*cls>
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\ProvidesClass{nudtpaper}
 %    \end{macrocode}
 
 % \subsection{引入基文档库}
@@ -474,8 +475,8 @@
 % 中文关键词
 %    \begin{macrocode}
 \newcommand\ckeywords[1]{{\textsf{\xiaosi \ckeywordsname:} #1}}
+%</cls>
 %    \end{macrocode}
 % \end{macro}
-%</cls>
 
 
